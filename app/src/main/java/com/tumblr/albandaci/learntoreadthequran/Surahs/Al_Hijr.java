@@ -1,5 +1,6 @@
 package com.tumblr.albandaci.learntoreadthequran.Surahs;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,16 +8,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.tumblr.albandaci.learntoreadthequran.Adapter.Al_Fatihah_Adapter;
 import com.tumblr.albandaci.learntoreadthequran.R;
+
+import java.io.IOException;
 
 public class Al_Hijr extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private String URL1 = "http://download.audioislam.com/audio/quran/recitation/al-afaasee/surah_al_hijr.mp3";
+    private MediaPlayer mediaPlayer;
 
     String [] verses = {"15:1", "15:2", "15:3", "15:4", "15:5", "15:6", "15:7", "15:8", "15:9", "15:10", "15:11", "15:12", "15:13", "15:14", "15:15", "15:16",
             "15:17", "15:18", "15:19", "15:20", "15:21", "15:22", "15:23", "15:24", "15:25", "15:26", "15:27", "15:28", "15:29", "15:30", "15:31", "15:32",
@@ -247,6 +251,7 @@ public class Al_Hijr extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize (true);
         recyclerView.setAdapter (adapter);
+        mediaPlayer = new MediaPlayer();
     }
 
     @Override
@@ -258,7 +263,18 @@ public class Al_Hijr extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast.makeText(getApplicationContext(), "You need to download the premium version of this app: \"Learn To Read The Quran Premium\" to listen to the audio", Toast.LENGTH_LONG).show();
+        try {
+            mediaPlayer.setDataSource(URL1);
+            mediaPlayer.prepareAsync();
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer1) {
+                    mediaPlayer1.start();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return super.onOptionsItemSelected(item);
     }
 }

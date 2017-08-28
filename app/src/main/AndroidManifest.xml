@@ -30,6 +30,7 @@
     // fix uf (sukuun III) and ful (sukuun IV) and kathura (basic words IV) and qaaimun/qaailun order (Definites/Definites Plural) and sad/saad 38 and qaf/qaaf 50 and taha
     // find out how much space the app takes
     // make arabic font bigger in quran (done) but for screenshots make it 30sp so you can use ali-imran
+    // audio Al_Adiyat 100 (done)
 
     <uses-permission android:name="android.permission.INTERNET"/>
 

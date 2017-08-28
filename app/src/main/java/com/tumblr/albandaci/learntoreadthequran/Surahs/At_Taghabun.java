@@ -1,5 +1,6 @@
 package com.tumblr.albandaci.learntoreadthequran.Surahs;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,16 +8,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.tumblr.albandaci.learntoreadthequran.Adapter.Al_Fatihah_Adapter;
 import com.tumblr.albandaci.learntoreadthequran.R;
+
+import java.io.IOException;
 
 public class At_Taghabun extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private String URL1 = "http://download.audioislam.com/audio/quran/recitation/al-afaasee/surah_at_taghabun.mp3";
+    private MediaPlayer mediaPlayer;
 
     String [] verses = {"64:1", "64:2", "64:3", "64:4", "64:5", "64:6", "64:7", "64:8", "64:9", "64:10", "64:11", "64:12", "64:13", "64:14", "64:15", "64:16",
             "64:17", "64:18"};
@@ -72,6 +76,7 @@ public class At_Taghabun extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize (true);
         recyclerView.setAdapter (adapter);
+        mediaPlayer = new MediaPlayer();
     }
 
     @Override
@@ -83,7 +88,18 @@ public class At_Taghabun extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast.makeText(getApplicationContext(), "You need to download the premium version of this app: \"Learn To Read The Quran Premium\" to listen to the audio", Toast.LENGTH_LONG).show();
+        try {
+            mediaPlayer.setDataSource(URL1);
+            mediaPlayer.prepareAsync();
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer1) {
+                    mediaPlayer1.start();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return super.onOptionsItemSelected(item);
     }
 }
