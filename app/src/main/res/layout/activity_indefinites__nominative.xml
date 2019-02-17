@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.tumblr.albandaci.learntoreadthequran.LearnToReadPackage.Indefinites_Nominative">
+    tools:context="com.tumblr.albandaci.learntoreadthequranpremium.LearnToReadPackage.Indefinites_Nominative">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_indefinites_nominative"
